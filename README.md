@@ -1,7 +1,7 @@
 # HACK ANDROID OVER INTERNET
 
 It is a Program written in bash and compiled for
-Unix, Linux, and Unix like other Os.
+Unix, Linux, and Unix like other OS.
 
 Functionality: 
 1. Shell
