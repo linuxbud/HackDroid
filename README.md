@@ -13,6 +13,7 @@ Functionality:
 
 Before running ./installer.sh paste your shodan API token in shodan_api_key.txt
 
+
 ## Installation 
 
 Type the following in Terminal / Console
