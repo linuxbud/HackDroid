@@ -9,6 +9,9 @@ Functionality:
     2. Remote control of hacked phone with screen.
 
 
+## Note
+
+Before running ./installer.sh paste your shodan API token in shodan_api_key.txt
 
 ## Installation 
 
@@ -21,6 +24,3 @@ chmod +x installer.sh
 ./installer.sh
 ```
 
-## Note
-
-Before running ./installer.sh paste your shodan API token in shodan_api_key.txt
