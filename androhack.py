@@ -22,20 +22,13 @@ def adb_restart():
 
 def setup():
     
+    adb_restart()
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
     # Set Working Directory
     home_dir = os.path.expanduser("~")
     folder_path = os.path.join(home_dir, ".androhack")
 
-    # Setup the API client
-    api_key = os.path.join(folder_path, "shodan_api_key.txt")
-    with open(api_key, 'r') as file:
-        api_key = file.read().strip()
-    global api
-    api = shodan.Shodan(api_key)
-
-    adb_restart()
-    os.system('cls' if os.name == 'nt' else 'clear')
-    
     # Display LOGO
     colors = [Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN]
     random_color = random.choice(colors)
@@ -43,6 +36,15 @@ def setup():
     with open(logo, 'r') as f:
         logo_contents = f.read()
     print(random_color + logo_contents + Style.RESET_ALL)
+    
+    # Setup the API client
+    api_key = os.path.join(folder_path, "shodan_api_key.txt")
+    with open(api_key, 'r') as file:
+        api_key = file.read().strip()
+    global api
+    api = shodan.Shodan(api_key)
+
+    
     
 
 def available_devices():
