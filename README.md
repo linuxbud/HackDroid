@@ -25,3 +25,6 @@ chmod +x installer.sh
 ./installer.sh
 ```
 
+## Screenshots
+
+![screenshot](https://github.com/sheikhshakibhossain/screenshot/raw/main/abdrohack_1.png)
