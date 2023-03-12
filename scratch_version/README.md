@@ -1,6 +1,6 @@
 # HACK ANDROID OVER INTERNET
 
-It is a Program written in python and build for
+It is a Program written in bash and compiled for
 Unix, Linux, and Unix like other OS.
 
 Functionality: 
@@ -20,7 +20,3 @@ cd AndroHack
 chmod +x installer.sh
 ./installer.sh
 ```
-
-## Note
-
-Before running ./installer.sh paste your shodan API token in shodan_api_key.txt
