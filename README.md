@@ -27,4 +27,4 @@ chmod +x installer.sh
 
 ## Screenshots
 
-![screenshot](https://github.com/sheikhshakibhossain/screenshot/raw/main/abdrohack_1.png)
+![screenshot](https://raw.githubusercontent.com/sheikhshakibhossain/screenshot/main/androhack_1.png)
