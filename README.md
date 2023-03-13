@@ -6,7 +6,7 @@ Unix, Linux, and Unix like other OS.
 Functionality: 
     
     1. Shell
-    2. Remote control of hacked phone with screen.
+    2. Remote control of hacked phone with screen. [ Default ]
 
 
 ## Note
