@@ -12,6 +12,7 @@ Functionality:
 ## Note
 
 Before running ./installer.sh paste your shodan API token in shodan_api_key.txt
+*** It can also hack any Operating System running Android in it.
 
 
 ## Installation 
