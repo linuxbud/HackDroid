@@ -1,7 +1,7 @@
 # HACK ANDROID OVER INTERNET
 
 It is a Program written in python and build for
-Unix, Linux, and Unix like Operating Systems.
+Unix, Linux, and Unix like Operating Systems. It can also get access of any Operating System running Android in it.
 
 Functionality: 
     
@@ -12,7 +12,6 @@ Functionality:
 ## Note
 
 Before running ./installer.sh paste your shodan API token in shodan_api_key.txt
-*** It can also get access of any Operating System running Android in it.
 
 
 ## Installation 
