@@ -1,7 +1,8 @@
 # HACK ANDROID OVER INTERNET
 
 It is a Program written in python and build for
-Unix, Linux, and Unix like Operating Systems. It can also get access of any Operating System running Android in it.
+Unix, Linux, and Unix like Operating Systems. 
+It can also get access of any Operating System running Android in it.
 
 Functionality: 
     
