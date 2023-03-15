@@ -28,8 +28,8 @@ chmod +x installer.sh
 
 ## Screenshots
 
-***     Android TV      ***
+📺 Android TV
 ![screenshot](https://raw.githubusercontent.com/sheikhshakibhossain/screenshot/main/androhack_1.png)
 
-***     Windows Server with Android Support     ***
+💻 Windows Server with Android Support
 ![screenshot](https://raw.githubusercontent.com/sheikhshakibhossain/screenshot/main/androhack_2.png)
