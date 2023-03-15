@@ -1,6 +1,7 @@
 #!/bin/python3
 
 import os
+import sys
 import shodan
 import socket
 import subprocess
@@ -71,7 +72,8 @@ def available_devices():
 
 
 def alive_devices():
-    print(Fore.MAGENTA + "Loading Currently Alive Devices ... " + Style.RESET_ALL, end="")
+    print(Fore.MAGENTA + "Loading Currently Alive Devices, please wait ... " + Style.RESET_ALL, end=" ")
+    sys.stdout.flush() # Clearing Buffer
     for ip in ip_list:
         try:
             # Attempt to connect to port 5555

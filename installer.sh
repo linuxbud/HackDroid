@@ -8,6 +8,14 @@ mkdir ~/.androhack
 cp logo.txt shodan_api_key.txt ~/.androhack
 pip3 install -r requirements.txt
 
-echo "done"
+echo "
+
+
+
+        Installation Done ...
+
+
+
+"
 
 exit
