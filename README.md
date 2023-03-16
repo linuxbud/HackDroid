@@ -21,7 +21,7 @@ It can get access of any Operating System running Android in it.
 
 ## Note
 
-Before running ./installer.sh paste your shodan API token in shodan_api_key.txt
+You must paste your shodan API token in shodan_api_key.txt
 
 
 ## Installation 
@@ -32,6 +32,7 @@ Type the following in Terminal / Console
 git clone https://github.com/sheikhshakibhossain/AndroHack/AndroHack.git
 cd AndroHack
 chmod +x installer.sh
+echo "YOUR_SHODAN_API_KEY" > shodan_api_key.txt
 ./installer.sh
 ```
 
