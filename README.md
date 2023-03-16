@@ -28,6 +28,9 @@ chmod +x installer.sh
 
 ## Screenshots
 
+📲 Android Phone
+![screenshot](https://raw.githubusercontent.com/sheikhshakibhossain/screenshot/main/androhack_0.png)
+
 📺 Android TV
 ![screenshot](https://raw.githubusercontent.com/sheikhshakibhossain/screenshot/main/androhack_1.png)
 
