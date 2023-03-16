@@ -2,7 +2,7 @@
 
 Hacking was not a child's play yesterday, but today.
 Just like sci-fi movies, you just type a single keyword "androhack" and select a device. 
- Baam! you've the graphical control of that device now!
+ Baam! you've the graphical control of that device.
 
 
 
