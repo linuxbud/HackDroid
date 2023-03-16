@@ -7,7 +7,7 @@ It can also get access of any Operating System running Android in it.
 Functionality: 
     
     1. Shell
-    2. Remote control of hacked phone with screen. [ Default ]
+    2. Remote control of hacked device with screen. [ Default ]
 
 
 ## Note
