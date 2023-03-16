@@ -14,7 +14,7 @@ Baam! you've the graphical control of that device now!
 
 So, what is AndroHack? 
 It's a program written in python and build for Unix, Linux, and Unix like Operating Systems. 
-It can get access of any Operating System running Android in it.
+It can get access of any Operating System that has Android support like mobiles, TVs, even Windows by exploiting ADB protocol.
 
 
 
