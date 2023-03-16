@@ -21,7 +21,9 @@ It can get access of any Operating System running Android in it.
 
 ## Note
 
-You must paste your shodan API token in shodan_api_key.txt
+You must paste your shodan API key in 'shodan_api_key.txt' file.
+To get the key navigate to [https://account.shodan.io] Shodan > Account > Overview > Show_Key 
+
 
 
 ## Installation 
