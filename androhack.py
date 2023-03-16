@@ -144,11 +144,10 @@ def connectWithVictim():
     x = input("Enter Index => ")
     x = int(x)
     try:
-        adb_restart()
         connect_adb_scrcpy(alive_ip[x])
     except Exception as e:
         connectWithVictim()
-    # os.system('cls' if os.name == 'nt' else 'clear')
+    subprocess.run(['adb', 'disconnect'])
 
 
 
