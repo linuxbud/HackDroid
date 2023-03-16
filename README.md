@@ -1,6 +1,12 @@
 # HACK ANDROID OVER INTERNET
 
-Hacking was not a child's play yesterday, but today.
+## Disclaimer
+
+This tool is intended for educational and research purposes only. The author is not responsible for any illegal use of this tool. Users are solely responsible for their actions and the consequences that may arise from the use of this tool. By using this tool, you agree to use it at your own risk.
+
+## Description
+
+Hacking was not a child's play yesterday, but not anymore.
 Just like sci-fi movies, you just type a single keyword "androhack" and select a device. 
 Baam! you've the graphical control of that device now!
 
@@ -12,7 +18,7 @@ It can get access of any Operating System running Android in it.
 
 
 
-## Functionality: 
+## Functionality
     
     1. Shell
     2. Remote control of hacked device with screen. [ Default ]
