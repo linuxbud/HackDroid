@@ -1,13 +1,22 @@
 # HACK ANDROID OVER INTERNET
 
-It is a Program written in python and build for
-Unix, Linux, and Unix like Operating Systems. 
-It can also get access of any Operating System running Android in it.
+Hacking was not a child's play yesterday, but today.
+Just like sci-fi movies, you just type a single keyword "androhack" and select a device. 
+ Baam! ow you've the graphical control of that device.
 
-Functionality: 
+
+
+So, whhat is AndroHack? 
+It's a program written in python and build for Unix, Linux, and Unix like Operating Systems. 
+It can get access of any Operating System running Android in it.
+
+
+
+## Functionality: 
     
     1. Shell
     2. Remote control of hacked device with screen. [ Default ]
+    
 
 
 ## Note
