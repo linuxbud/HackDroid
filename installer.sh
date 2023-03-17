@@ -17,6 +17,7 @@ echo "
 
 
         Installation Done ...
+        Mr. Garbage says, "You're welcome $USER"
 
 
 
