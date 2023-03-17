@@ -5,8 +5,9 @@ import sys
 import json
 import shodan
 import socket
-import subprocess
 import random
+import threading
+import subprocess
 from colorama import Fore, Style
 
 
@@ -28,10 +29,14 @@ def load_ip_file():
     folder_path = os.path.join(home_dir, ".androhack")
     ip_list_file = os.path.join(folder_path, "ip_list.txt")
     hackable_ip_file = os.path.join(folder_path, "hackable_ip_list.txt")
-    with open(ip_list_file, "r") as f:
-        ip_list = json.load(f)
-    with open(hackable_ip_file, "r") as f:
-        hackable_ip = json.load(f)
+    try:
+        with open(ip_list_file, "r") as f:
+            ip_list = json.load(f)
+        with open(hackable_ip_file, "r") as f:
+            hackable_ip = json.load(f)
+    except Exception as e:
+        print("No Data Available")
+        update_device()
 
 
 
@@ -75,6 +80,7 @@ def setup():
     
 
 def update_device():
+    global ip_list, hackable_ip
     print(Fore.MAGENTA + "Updating Device List, please wait ... " + Style.RESET_ALL, end=" ")
     sys.stdout.flush() # Clearing Buffer
     try:
@@ -89,8 +95,11 @@ def update_device():
 
     except shodan.APIError as e:
         print(f"Error: {e}")
-
+    
     print()
+    ip_list = list(set(ip_list))
+    hackable_ip = list(set(hackable_ip))
+
     # Save the list into file
     home_dir = os.path.expanduser("~")
     folder_path = os.path.join(home_dir, ".androhack")
@@ -106,7 +115,7 @@ def update_device():
 
 
 
-def print_status():
+def display_status():
     print()
     print(Fore.YELLOW + "Total Devices: " + str(len(ip_list)) + Style.RESET_ALL)
     print(Fore.YELLOW + "Hackable: " + str(len(hackable_ip)) + Style.RESET_ALL)
@@ -117,23 +126,61 @@ def print_status():
 
 
 
+def show_options():
+    print()
+    print("1) Refresh Database")
+    print("2) Check Online Devices")
+    print("3) Display Status")
+    print("4) Attack Mode")
+    print("0) Exit")
+    print()
+
+
+
+
+
+
+# def alive_devices():
+#     print(Fore.MAGENTA + "Checking Currently Alive Devices, please wait ... " + Style.RESET_ALL, end=" ")
+#     sys.stdout.flush() # Clearing Buffer
+#     for ip in hackable_ip:
+#         try:
+#             # Attempt to connect to port 5555
+#             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#             s.settimeout(1)
+#             s.connect((ip, 5555))
+#             s.close()
+#             # If the connection succeeds, add the IP to the list
+#             alive_ip.append(ip)
+#             # print(f"IP {ip} is alive on port 5555")
+#         except (socket.timeout, ConnectionRefusedError):
+#             # If the connection fails, continue to the next IP
+#             pass
+#     print()
+
+def check_port(ip):
+    try:
+        # Attempt to connect to port 5555
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(1)
+        s.connect((ip, 5555))
+        s.close()
+        # If the connection succeeds, add the IP to the list
+        alive_ip.append(ip)
+    except (socket.timeout, ConnectionRefusedError):
+        # If the connection fails, continue to the next IP
+        pass
 
 def alive_devices():
     print(Fore.MAGENTA + "Checking Currently Alive Devices, please wait ... " + Style.RESET_ALL, end=" ")
     sys.stdout.flush() # Clearing Buffer
-    for ip in ip_list:
-        try:
-            # Attempt to connect to port 5555
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.settimeout(1)
-            s.connect((ip, 5555))
-            s.close()
-            # If the connection succeeds, add the IP to the list
-            alive_ip.append(ip)
-            # print(f"IP {ip} is alive on port 5555")
-        except (socket.timeout, ConnectionRefusedError):
-            # If the connection fails, continue to the next IP
-            pass
+    threads = []
+    for ip in hackable_ip:
+        t = threading.Thread(target=check_port, args=[ip])
+        t.start()
+        threads.append(t)
+    for t in threads:
+        t.join()
     print()
 
 
@@ -205,11 +252,34 @@ def connectWithVictim():
 
 
 if __name__ == "__main__":
+
     setup()
     load_ip_file()
-    # update_device()
-    alive_devices()
-    print_status()
+    alive = False
 
-    while True:
-        connectWithVictim()
+    while True:   
+        show_options()
+        x = int(input("Select Option => "))
+        if (x == 0):
+            exit(0)
+        elif (x == 1):
+            update_device()
+            print("Done")
+            continue
+        elif (x == 2):
+            alive_devices()
+            print("Done")
+            alive = True
+
+        if not alive:
+            print("This operation needs to check online devices first.")
+            alive_devices()
+            print("Done")
+            alive = True
+        if (x == 3):
+            display_status()
+        elif (x == 4):
+            while True:
+                connectWithVictim()
+
+    
