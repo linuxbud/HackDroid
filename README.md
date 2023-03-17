@@ -24,6 +24,18 @@ It can get access of any Operating System that has Android support like mobiles,
     2. Remote control of hacked device with screen. [ Default ]
     
 
+## Usage
+```bash
+androhack
+```
+```javascript
+1) Refresh Database      | Scans for vulnerable devices and adds them to database
+2) Check Online Devices  | Determines online devices
+3) Display Status        | Shows the stats
+4) Attack Mode           | Tries to gain access on a device
+0) Exit
+```
+
 
 ## Note
 
@@ -45,6 +57,8 @@ echo "YOUR_SHODAN_API_KEY" > shodan_api_key.txt
 ```
 
 ## Screenshots
+
+![screenshot](https://raw.githubusercontent.com/sheikhshakibhossain/screenshot/main/androhack_3.png)
 
 📲 Android Phone
 ![screenshot](https://raw.githubusercontent.com/sheikhshakibhossain/screenshot/main/androhack_0.png)
